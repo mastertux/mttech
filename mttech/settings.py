@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard',
+    'advogados',
+    'empresas',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +87,7 @@ DATABASES = {
         'PORT': '5432', # 8000 is default
     }
 }
+
 
 
 # Password validation
