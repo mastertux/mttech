@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^login$', login, name='login'),
     url(r'^logout$', logout, name='logout'),
     url(r'^advogados/',include('advogados.urls')),
+    url(r'^empresas/',include('empresas.urls')),
     url(r'', index, name='dashboard')
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

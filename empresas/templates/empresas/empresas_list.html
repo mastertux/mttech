@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extraheadtable %}
+    <link href="{% static "theme/plugins/material-preloader/css/materialPreloader.min.css" %}" rel="stylesheet">
+    <link href="{% static "theme/plugins/datatables/css/jquery.dataTables.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s12 m12 l12">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">Listagem Empresas</span>
+                    <table id="empresas_table" class="display responsive-table datatable-example">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Ações</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for empresa in object_list %}
+                                <tr>
+                                    <td>{{ empresa.nome }}</td>
+                             
+                                    <td>
+                                        <a class="btn-floating waves-effect waves-light blue" href="{% url 'empresas_edit' empresa.id %}"><i class="material-icons">edit</i></a>
+                                        <a class="btn-floating waves-effect waves-light red" href="{% url 'empresas_delete' empresa.id %}"><i class="material-icons">delete</i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large green" href="{% url 'empresas_new' %}">
+            <i class="large material-icons">add</i>
+        </a>
+    </div>
+
+{% endblock %}
+{% block extrajs %}
+
+    <script src="{% static "theme/js/alpha.js" %}"></script>
+    <script src="{% static "theme/js/pages/table-data.js" %}"></script>
+    <script src="{% static "theme/plugins/datatables/js/jquery.dataTables.min.js" %}"></script>
+
+{% endblock %}

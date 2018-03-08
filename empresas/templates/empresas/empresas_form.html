@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extrahead %}
+    <link href="{% static "theme/plugins/select2/css/select2.css" %}" rel="stylesheet">
+{% endblock %}
+
+
+
+{% block content %}
+<div class="row">
+    <div class="col s12">
+        <div class="page-title">Cadastro de Advogados</div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <form method="post" novalidate>
+            {% csrf_token %}
+        <div class="row">
+            <div class="col s12">
+                <ul class="tabs tab-demo z-depth-1" style="width: 100%;">
+                    <li class="tab col s3"><a href="#vehicle_tab_1">Dados do Advogado</a></li>
+                </ul>
+            </div>
+
+            <div id="vehicle_tab_1" class="col s12">
+
+                <div class="card">
+                    <div class="card-content">
+                        <div class="row">
+
+                            <div class="input-field col s6">
+
+                                {{ form.nome }}
+                                {{ form.nome.label_tag }}
+                                {% if form.nome.errors  %}
+                                    <label id="nome-error" class="error" for="nome">
+                                         {{ form.nome.errors }}
+                                    </label>
+
+                                {%  endif %}
+                            </div>
+                            <div class="input-field col s6">
+                                    {{ form.ramo_atividade.label_tag }}
+                                    {{ form.ramo_atividade }}
+                                    {% if form.ramo_atividade.errors  %}
+                                        <label id="ramo_atividade-error" class="error" for="ramo_atividade">
+                                             {{ form.ramo_atividade.errors }}
+                                        </label>
+
+                                    {%  endif %}
+                            </div>
+                        </div>
+                        
+
+                        
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                    <input type="submit" class="waves-effect waves-light btn green m-b-xs" value="Salvar">
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+{% block extrajs %}
+
+     <script src="{% static "theme/js/alpha.js" %}"></script>
+
+
+{% endblock %}
