@@ -32,15 +32,18 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'core',
     'dashboard',
     'advogados',
     'empresas',
+    'ordemservico',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +143,5 @@ MEDIA_URL = '/media/'
 LOGIN_URL = reverse_lazy('login')
 
 LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
+
+AUTH_USER_MODEL = 'core.User'

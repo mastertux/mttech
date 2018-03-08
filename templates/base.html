@@ -446,6 +446,19 @@
                     </div>
                 <ul class="sidebar-menu collapsible collapsible-accordion" data-collapsible="accordion">
                     <li class="no-padding active"><a class="waves-effect waves-grey active" href="index.html"><i class="material-icons">dashboard</i>Dashboard</a></li>
+                    {% if user.is_superuser %}
+                        <li class="no-padding active"><a class="waves-effect waves-grey active" href="index.html"><i class="material-icons">dashboard</i>Empresa</a></li>    
+                        <li class="no-padding active"><a class="waves-effect waves-grey active" href="index.html"><i class="material-icons">dashboard</i>Advogado</a></li>    
+                    {% endif %}
+                    
+                    {% if user.is_advogado%}
+                        <li class="no-padding active"><a class="waves-effect waves-grey active" href="index.html"><i class="material-icons">dashboard</i>Ordem Servicos</a></li>    
+                    {% endif %}
+                    
+                    {% if user.is_empresa %}
+                        <li class="no-padding active"><a class="waves-effect waves-grey active" href="index.html"><i class="material-icons">dashboard</i>Propostas</a></li>
+                    {% endif %}
+
                 </ul>
                 <div class="footer">
                     <p class="copyright">Mttech</p>
