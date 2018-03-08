@@ -25,13 +25,19 @@ class OrdemServico(models.Model):
         blank=False
     )
 
-    status = models.PositiveSmallIntegerField(choices=STATUS_ORDEM_SERVICO)
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_ORDEM_SERVICO, 
+        default=1, 
+        blank=True
+    )
 
     class Meta:
         db_table = 'ordem_servicos'
         managed = True
         verbose_name = 'Ordem Serviço'
         verbose_name_plural = 'Ordens de Serviços'
+    
+        
 
 
 class Proposta(models.Model):

@@ -19,12 +19,22 @@ class EmpresasCreate(LoginRequiredMixin, CreateView):
     form_class = EmpresasForm
     template_name = 'empresas/empresas_form.html'
 
+    def get_form_kwargs(self):
+        kw = super(EmpresasCreate, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
+
 class EmpresasUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     login_url = '/login'
     permission_required = 'empresas.change_empresas'
     model = Empresas
     form_class = EmpresasForm
     success_url = reverse_lazy('empresas_list')
+
+    def get_form_kwargs(self):
+        kw = super(EmpresasUpdate, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
 
 class EmpresasDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     login_url = '/login'

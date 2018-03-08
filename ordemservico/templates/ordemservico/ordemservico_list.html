@@ -11,30 +11,36 @@
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Listagem Empresas</span>
+                    <span class="card-title">Listagem Ordem de Serviço</span>
                     <table id="example" class="display responsive-table datatable-example">
                         <thead>
                             <tr>
-                                <th>Nome</th>
-                                <th>Ramo Atividade</th>
+                                <th>Titulo</th>
+                                <th>Descrição</th>
+                                <th>Empresa</th>
+                                <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Nome</th>
-                                <th>Ramo Atividade</th>
+                                <th>Titulo</th>
+                                <th>Descrição</th>
+                                <th>Empresa</th>
+                                <th>Status</th>
                                 <th>Ações</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            {% for empresa in object_list %}
+                            {% for ordem_servico in object_list %}
                                 <tr>
-                                    <td>{{ empresa.nome }}</td>
-                                    <td>{{ empresa.ramo_atividade }}</td>    
+                                    <td>{{ ordem_servico.titulo }}</td>
+                                    <td>{{ ordem_servico.descricao }}</td>
+                                    <td>{{ ordem_servico.empresa }}</td>
+                                    <td>{{ ordem_servico.get_status_display }}</td>
                                     <td>
-                                        <a class="btn-floating waves-effect waves-light blue" href="{% url 'empresas_edit' empresa.id %}"><i class="material-icons">edit</i></a>
-                                        <a class="btn-floating waves-effect waves-light red" href="{% url 'empresas_delete' empresa.id %}"><i class="material-icons">delete</i></a>
+                                        <a class="btn-floating waves-effect waves-light blue" href="{% url 'ordemservico_edit' ordem_servico.id %}"><i class="material-icons">edit</i></a>
+                                        <a class="btn-floating waves-effect waves-light red" href="{% url 'ordemservico_delete' ordem_servico.id %}"><i class="material-icons">delete</i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -45,7 +51,7 @@
         </div>
     </div>
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large green" href="{% url 'empresas_new' %}">
+        <a class="btn-floating btn-large green" href="{% url 'ordemservico_new' %}">
             <i class="large material-icons">add</i>
         </a>
     </div>

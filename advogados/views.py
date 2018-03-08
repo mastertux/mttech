@@ -17,12 +17,22 @@ class AdvogadosCreate(LoginRequiredMixin, CreateView):
     form_class = AdvogadosForm
     template_name = 'advogados/advogados_form.html'
 
+    def get_form_kwargs(self):
+        kw = super(AdvogadosCreate, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
+
 class AdvogadosUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     login_url = '/login'
     permission_required = 'advogados.change_advogados'
     model = Advogados
     form_class = AdvogadosForm
     success_url = reverse_lazy('advogados_list')
+
+    def get_form_kwargs(self):
+        kw = super(AdvogadosUpdate, self).get_form_kwargs()
+        kw['request'] = self.request
+        return kw
 
 class AdvogadosDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     login_url = '/login'

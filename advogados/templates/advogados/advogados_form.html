@@ -77,6 +77,42 @@
 
 
                         </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                {{ form.username.label_tag }}
+                                {{ form.username }}
+                                {% if form.username.errors  %}
+                                    <label id="username-error" class="error" for="username">
+                                         {{ form.username.errors }}
+                                    </label>
+
+                                {%  endif %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="input-field col s6">
+                                {{ form.password.label_tag }}
+                                {{ form.password }}
+                                {% if form.password.errors  %}
+                                    <label id="password-error" class="error" for="password">
+                                         {{ form.password.errors }}
+                                    </label>
+
+                                {%  endif %}
+                            </div>
+                             <div class="input-field col s6">
+                                {{ form.confirm_password.label_tag }}
+                                {{ form.confirm_password }}
+                                {% if form.confirm_password.errors  %}
+                                    <label id="confirm_password-error" class="error" for="confirm_password">
+                                         {{ form.confirm_password.errors }}
+                                    </label>
+
+                                {%  endif %}
+                            </div>
+
+
+                        </div>
 
                         
                     </div>

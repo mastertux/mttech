@@ -34,3 +34,6 @@ class Advogados(models.Model):
         managed = True
         verbose_name = 'Advogado'
         verbose_name_plural = 'Advogados'
+
+    def __str__(self):
+        return self.nome

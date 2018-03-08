@@ -18,3 +18,6 @@ class Empresas(models.Model):
         managed = True
         verbose_name = 'Empresa'
         verbose_name_plural = 'Empresas'
+    
+    def __str__(self):
+        return self.nome
