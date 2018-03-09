@@ -432,7 +432,11 @@
                         <div class="sidebar-profile-info">
                             <a href="javascript:void(0);" class="account-settings-link">
                                 <p>{{ request.user.username }}</p>
-                                <span>{{ request.user.email }}<i class="material-icons right">arrow_drop_down</i></span>
+                                {% if user.is_advogado %}
+                                <span>Advogado<i class="material-icons right">arrow_drop_down</i></span>
+                                {% else %}
+                                <span>Empresa<i class="material-icons right">arrow_drop_down</i></span>
+                                {% endif %}
                             </a>
                         </div>
                     </div>
@@ -451,9 +455,9 @@
                         <li class="no-padding active"><a class="waves-effect waves-grey active" href="{% url 'advogados_list' %}"><i class="material-icons">dashboard</i>Advogado</a></li>    
                     {% endif %}
                     
-                    {% if user.is_advogado or user.is_empresa or user.is_superuser %}
-                        <li class="no-padding active"><a class="waves-effect waves-grey active" href="{% url 'ordemservico_list' %}"><i class="material-icons">dashboard</i>Ordem Servicos</a></li>    
-                    {% endif %}
+                    
+                    <li class="no-padding active"><a class="waves-effect waves-grey active" href="{% url 'ordemservico_list' %}"><i class="material-icons">dashboard</i>Ordem Servicos</a></li>    
+                    <li class="no-padding active"><a class="waves-effect waves-grey active" href="{% url 'proposta_list' %}"><i class="material-icons">dashboard</i>Proposta</a></li>    
                     
                    
 

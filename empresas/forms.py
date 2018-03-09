@@ -53,8 +53,9 @@ class EmpresasForm(forms.ModelForm):
             user.is_empresa = True
             user.save()
 
-            permission = Permission.objects.get(codename='add_ordemservico')
-            user.user_permissions.add(permission)
+            permission = Permission.objects.filter(codename__in=['add_ordemservico','add_proposta'])
+            user.user_permissions.add(permission.first())
+            user.user_permissions.add(permission.last())
 
         else:
             user = User.objects.get(username=self.cleaned_data.get('username'))

@@ -16,7 +16,7 @@ class OrdemServico(models.Model):
     empresa = models.ForeignKey(
         'empresas.Empresas',
         on_delete=models.CASCADE,
-        null=False,
+        null=True,
         blank=True
     )
 
@@ -41,16 +41,24 @@ class OrdemServico(models.Model):
 
 
 class Proposta(models.Model):
+    STATUS_PROPOSTA = (
+        (1, 'Aberta'),
+        (2, 'Aceita'),
+        (3, 'Recusada'),
+    )
+    
     ordem_servico = models.ForeignKey(
         'OrdemServico',
         on_delete=models.CASCADE,
-        null=False
+        null=False,
+        blank=True
     )
     
     advogado = models.ForeignKey(
         'advogados.Advogados',
         on_delete=models.CASCADE,
-        null=False
+        null=False,
+        blank=True
     )
     
     valor = models.DecimalField(
@@ -58,6 +66,11 @@ class Proposta(models.Model):
         decimal_places=2
     )
 
+    status = models.PositiveSmallIntegerField(
+        choices=STATUS_PROPOSTA, 
+        default=1, 
+        blank=True
+    )
     class Meta:
         db_table = 'propostas'
         managed = True

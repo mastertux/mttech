@@ -11,41 +11,41 @@
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-content">
-                    <span class="card-title">Listagem Ordem de Serviço</span>
+                    <span class="card-title">Listagem de propostas</span>
                     <table id="example" class="display responsive-table datatable-example">
                         <thead>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Descrição</th>
-                                <th>Empresa</th>
+                                <th>Valor</th>
                                 <th>Status</th>
+                                {% if user.is_empresa %}
                                 <th>Ações</th>
+                                {% endif %}
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Titulo</th>
-                                <th>Descrição</th>
-                                <th>Empresa</th>
+                                <th>Valor</th>
                                 <th>Status</th>
+                                {% if user.is_empresa %}
                                 <th>Ações</th>
+                                {% endif %}
+                                
                             </tr>
                         </tfoot>
                         <tbody>
-                            {% for ordem_servico in object_list %}
+                            {% for proposta in object_list %}
                                 <tr>
-                                    <td>{{ ordem_servico.titulo }}</td>
-                                    <td>{{ ordem_servico.descricao }}</td>
-                                    <td>{{ ordem_servico.empresa }}</td>
-                                    <td>{{ ordem_servico.get_status_display }}</td>
+                                    <td>{{ proposta.ordem_servico.titulo }}</td>
+                                    <td>{{ proposta.valor }}</td>
+                                    <td>{{ proposta.get_status_display }}</td>
                                     <td>
                                         {% if user.is_empresa %}
-                                            <a class="btn-floating waves-effect waves-light blue" href="{% url 'ordemservico_edit' ordem_servico.id %}"><i class="material-icons">edit</i></a>
-                                            <a class="btn-floating waves-effect waves-light red" href="{% url 'ordemservico_delete' ordem_servico.id %}"><i class="material-icons">delete</i></a>
+                                            <a class="btn-floating waves-effect waves-light blue" href="{% url 'proposta_aceita' proposta.id %}"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red" href="{% url 'proposta_recusada' proposta.id %}"><i class="material-icons">delete</i></a>
                                         {% endif %}
-                                        {% if user.is_advogado %}
-                                            <a class="btn-floating waves-effect waves-light blue" href="{% url 'proposta_new' ordem_servico.id %}"><i class="material-icons">money</i></a>
-                                        {% endif %}
+                                        
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -55,11 +55,7 @@
             </div>
         </div>
     </div>
-    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large green" href="{% url 'ordemservico_new' %}">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
+
 
 {% endblock %}
 {% block extrajs %}

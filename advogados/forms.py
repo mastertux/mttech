@@ -1,5 +1,6 @@
 from django import forms
 from django.core.exceptions import ValidationError
+from django.contrib.auth.models import Permission
 from advogados.models import Advogados
 from core.models import User
 
@@ -14,7 +15,7 @@ class AdvogadosForm(forms.ModelForm):
         super(AdvogadosForm, self).__init__(*args, **kwargs)
         update_initial = {}
 
-        if self.instance:
+        if self.instance.id:
             self.fields['username'].widget.attrs['readonly'] = True
             self.fields['username'].required = False
             self.fields['password'].required = False
@@ -53,6 +54,11 @@ class AdvogadosForm(forms.ModelForm):
             user.advogado = advogado
             user.is_advogado = True
             user.save()
+
+            permission = Permission.objects.filter(codename__in=['add_ordemservico','add_proposta'])
+            user.user_permissions.add(permission.first())
+            user.user_permissions.add(permission.last())
+            
         else:
             user = User.objects.get(username=self.cleaned_data.get('username'))
             if self.cleaned_data.get('password') != "":
