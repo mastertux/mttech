@@ -28,5 +28,15 @@ Desafio Mttech
 # Demonstração
   http://desafio-mttech.t01.com.br <br/>
   
-  Usuário: admin <br/>
-  Senha: testemttech
+  #Perfil Administrador
+    Usuário: admin <br/>
+    Senha: testemttech <br/>
+  
+  #Perfil Empresa
+    Usuário: empresa01 <br/>
+    Senha: emp123 <br/>
+  
+  #Perfil Advogado
+    Usuário: advogado01 <br/>
+    Senha: adv123 <br/>
+  
