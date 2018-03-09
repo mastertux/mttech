@@ -4,6 +4,7 @@
 {% block extraheadtable %}
     <link href="{% static "theme/plugins/material-preloader/css/materialPreloader.min.css" %}" rel="stylesheet">
     <link href="{% static "theme/plugins/datatables/css/jquery.dataTables.css" %}" rel="stylesheet">
+    <link href="{% static "theme/plugins/sweetalert/sweetalert.css" %}" rel="stylesheet" type="text/css"/> 
 {% endblock %}
 
 {% block content %}
@@ -67,5 +68,19 @@
     <script src="{% static "theme/js/alpha.js" %}"></script>
     <script src="{% static "theme/js/pages/table-data.js" %}"></script>
     <script src="{% static "theme/plugins/datatables/js/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static "theme/plugins/sweetalert/sweetalert.min.js" %}"></script>
+    <script>
+        $( document ).ready(function() {
+            
+            {% if messages %}
+                {% for message in messages %}
+                    swal("{{message}}");
+                {% endfor %}
+            {% endif %}
+            
+            
+        })
+
+    </script>
 
 {% endblock %}

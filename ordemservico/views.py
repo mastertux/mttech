@@ -5,6 +5,8 @@ from django.core.urlresolvers import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views import View
 from django.shortcuts import redirect
+from django.db import IntegrityError
+from django.contrib import messages
 from ordemservico.models import OrdemServico, Proposta
 from ordemservico.forms import OrdemServicoForm, PropostaForm
 
@@ -68,12 +70,17 @@ class PropostaCreate(LoginRequiredMixin, CreateView):
         return render(request, self.template_name, {'form': form})
     
     def form_valid(self, form):
-        proposta = form.save(commit=False)
-        os = OrdemServico.objects.get(pk=self.request.session['ordemservico_id'])
-        proposta.ordem_servico = os
-        proposta.advogado = self.request.user.advogado
-        del self.request.session['ordemservico_id']
-        return super(PropostaCreate, self).form_valid(form)
+        try:
+            proposta = form.save(commit=False)
+            os = OrdemServico.objects.get(pk=self.request.session['ordemservico_id'])
+            proposta.ordem_servico = os
+            proposta.advogado = self.request.user.advogado
+            del self.request.session['ordemservico_id']
+            return super(PropostaCreate, self).form_valid(form)
+
+        except IntegrityError as e:
+            messages.add_message(self.request, messages.ERROR, "Já existe proposta para essa Ordem de serviço")
+            return redirect('/ordemservico/list')
 
 
 class PropostaList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
