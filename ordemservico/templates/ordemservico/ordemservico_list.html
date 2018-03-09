@@ -40,11 +40,11 @@
                                     <td>{{ ordem_servico.get_status_display }}</td>
                                     <td>
                                         {% if user.is_empresa %}
-                                            <a class="btn-floating waves-effect waves-light blue" href="{% url 'ordemservico_edit' ordem_servico.id %}"><i class="material-icons">edit</i></a>
-                                            <a class="btn-floating waves-effect waves-light red" href="{% url 'ordemservico_delete' ordem_servico.id %}"><i class="material-icons">delete</i></a>
+                                            <a class="btn-floating waves-effect waves-light blue" data-toggle="tooltip" title="Editar" href="{% url 'ordemservico_edit' ordem_servico.id %}"><i class="material-icons">edit</i></a>
+                                            <a class="btn-floating waves-effect waves-light red" data-toggle="tooltip" title="Apagar" href="{% url 'ordemservico_delete' ordem_servico.id %}"><i class="material-icons">delete</i></a>
                                         {% endif %}
                                         {% if user.is_advogado %}
-                                            <a class="btn-floating waves-effect waves-light blue" href="{% url 'proposta_new' ordem_servico.id %}"><i class="material-icons">money</i></a>
+                                            <a class="btn-floating waves-effect waves-light blue" data-toggle="tooltip" title="Fazer proposta" href="{% url 'proposta_new' ordem_servico.id %}"><i class="material-icons">money</i></a>
                                         {% endif %}
                                     </td>
                                 </tr>

@@ -17,6 +17,8 @@ class OrdemServicoList(LoginRequiredMixin, PermissionRequiredMixin, ListView):
     def get_queryset(self):
         if self.request.user.is_empresa:
             return OrdemServico.objects.filter(empresa=self.request.user.empresa)
+        elif self.request.user.is_advogado:
+            return OrdemServico.objects.filter(status=1)
         return OrdemServico.objects.all()
 
 

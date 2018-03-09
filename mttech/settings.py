@@ -142,6 +142,6 @@ MEDIA_URL = '/media/'
 
 LOGIN_URL = reverse_lazy('login')
 
-LOGIN_REDIRECT_URL = reverse_lazy('ordemservico')
+LOGIN_REDIRECT_URL = reverse_lazy('dashboard')
 
 AUTH_USER_MODEL = 'core.User'
